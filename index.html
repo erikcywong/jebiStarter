@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEBIstarter | 咖啡主题低碳生活购物中心</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --indiegogo-blue: #2B2D5C;
+            --indiegogo-light-blue: #3A3E7A;
+            --indiegogo-accent: #F94C57;
+            --indiegogo-green: #00B28D;
+            --indiegogo-light-gray: #F8F9FA;
+            --indiegogo-gray: #6C757D;
+            --indiegogo-dark: #212529;
+            --coffee-medium: #8B5A3C;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #FFFFFF;
+            color: var(--indiegogo-dark);
+            line-height: 1.6;
+        }
+        
+        /* 导航栏 - Indiegogo风格 */
+        header {
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #E9ECEF;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            color: var(--indiegogo-blue);
+        }
+        
+        .logo i {
+            color: var(--indiegogo-green);
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--indiegogo-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--indiegogo-blue);
+        }
+        
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: var(--indiegogo-light-gray);
+            border-radius: 4px;
+            padding: 0.5rem;
+            margin-right: 1rem;
+        }
+        
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 0.3rem;
+            width: 180px;
+            outline: none;
+        }
+        
+        .search-box i {
+            color: var(--indiegogo-gray);
+        }
+        
+        .cta-button {
+            background-color: var(--indiegogo-blue);
+            color: #FFFFFF;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--indiegogo-light-blue);
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: var(--indiegogo-blue);
+            border: 1px solid var(--indiegogo-blue);
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .secondary-button:hover {
+            background-color: var(--indiegogo-light-gray);
+        }
+        
+        /* 主视觉区域 - Indiegogo风格 */
+        .hero {
+            background: linear-gradient(rgba(43, 45, 92, 0.9), rgba(43, 45, 92, 0.95)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #FFFFFF;
+            padding: 0 1rem;
+            margin-top: 70px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        /* 区域部分 */
+        section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--indiegogo-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .section-title p {
+            color: var(--indiegogo-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* 理念部分 - Indiegogo风格卡片 */
+        .concept-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #E9ECEF;
+            text-align: center;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .concept-card i {
+            font-size: 2.5rem;
+            color: var(--indiegogo-green);
+            margin-bottom: 1.5rem;
+        }
+        
+        .concept-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--indiegogo-dark);
+            font-weight: 600;
+        }
+        
+        .concept-card p {
+            color: var(--indiegogo-gray);
+            line-height: 1.7;
+        }
+        
+        /* 空间体验 - Indiegogo风格 */
+        .spaces-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .space-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #E9ECEF;
+        }
+        
+        .space-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .space-img {
+            height: 200px;
+            background-color: var(--indiegogo-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .space-content {
+            padding: 1.5rem;
+        }
+        
+        .space-content h3 {
+            color: var(--indiegogo-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .space-content p {
+            color: var(--indiegogo-gray);
+            line-height: 1.6;
+        }
+        
+        /* 众筹项目 - Indiegogo风格 */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #E9ECEF;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .project-header {
+            padding: 1.5rem;
+            background-color: white;
+            color: var(--indiegogo-dark);
+            border-bottom: 1px solid #E9ECEF;
+        }
+        
+        .project-header h3 {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+        
+        .project-header p {
+            color: var(--indiegogo-gray);
+        }
+        
+        .project-progress {
+            height: 8px;
+            background-color: #E9ECEF;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--indiegogo-green);
+            border-radius: 4px;
+        }
+        
+        .project-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--indiegogo-gray);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tag {
+            background-color: var(--indiegogo-light-gray);
+            color: var(--indiegogo-dark);
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .project-content p {
+            color: var(--indiegogo-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        /* 可持续数据 - Indiegogo风格 */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #E9ECEF;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--indiegogo-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-item p {
+            color: var(--indiegogo-gray);
+            font-weight: 500;
+        }
+        
+        /* 社区动态 - Indiegogo风格 */
+        .community-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .community-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #E9ECEF;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .community-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .event-date {
+            background-color: var(--indiegogo-blue);
+            color: white;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .community-card h3 {
+            color: var(--indiegogo-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .community-card p {
+            color: var(--indiegogo-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        /* 页脚 - Indiegogo风格 */
+        footer {
+            background-color: var(--indiegogo-dark);
+            color: #FFFFFF;
+            padding: 3rem 5%;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #CCCCCC;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: #FFFFFF;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            color: #CCCCCC;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #FFFFFF;
+        }
+        
+        .footer-column p {
+            color: #CCCCCC;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-top: 1rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--indiegogo-blue);
+            color: white;
+            border: none;
+            padding: 0 1rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: var(--indiegogo-light-blue);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999999;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 3rem 5%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .search-box {
+                display: none;
+            }
+            
+            .hero {
+                height: 60vh;
+                margin-top: 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                <span>JEBIstarter</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#concept">核心理念</a></li>
+                <li><a href="#spaces">空间体验</a></li>
+                <li><a href="#projects">创新众筹</a></li>
+                <li><a href="#sustainability">低碳承诺</a></li>
+                <li><a href="#community">社区动态</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="搜索项目...">
+                </div>
+                <button class="secondary-button">登录</button>
+                <button class="cta-button">成为会员</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主视觉区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>从创意到生活方式</h1>
+            <p>全球首个融合Indiegogo与Kickstarter理念的咖啡主题低碳生活购物中心</p>
+            <button class="cta-button" style="padding: 0.9rem 2rem; font-size: 1rem;">探索空间</button>
+        </div>
+    </section>
+
+    <!-- 核心理念 -->
+    <section id="concept">
+        <div class="section-title">
+            <h2>我们的理念</h2>
+            <p>融合创新众筹与可持续生活，打造未来零售新体验</p>
+        </div>
+        <div class="concept-cards">
+            <div class="concept-card">
+                <i class="fas fa-lightbulb"></i>
+                <h3>创新孵化</h3>
+                <p>为新兴咖啡器具和环保产品提供展示与测试平台，让创意在这里生根发芽。</p>
+            </div>
+            <div class="concept-card">
+                <i class="fas fa-leaf"></i>
+                <h3>低碳生活</h3>
+                <p>推广可持续生活方式，从产品设计到运营全程贯彻环保理念。</p>
+            </div>
+            <div class="concept-card">
+                <i class="fas fa-users"></i>
+                <h3>社区共建</h3>
+                <p>打造活跃社群，让消费者成为产品共创者和品牌传播者。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 空间体验 -->
+    <section id="spaces">
+        <div class="section-title">
+            <h2>空间体验</h2>
+            <p>四大功能区，全方位沉浸式咖啡与低碳生活体验</p>
+        </div>
+        <div class="spaces-container">
+            <div class="space-card">
+                <div class="space-img" style="background-color: var(--indiegogo-blue);">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="space-content">
+                    <h3>孵化区</h3>
+                    <p>展示和众筹新兴咖啡器具与环保产品，让创意在此验证市场。</p>
+                </div>
+            </div>
+            <div class="space-card">
+                <div class="space-img" style="background-color: var(--indiegogo-light-blue);">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="space-content">
+                    <h3>体验工坊</h3>
+                    <p>咖啡烘焙、手冲教学和DIY工作坊，亲手创造可持续生活。</p>
+                </div>
+            </div>
+            <div class="space-card">
+                <div class="space-img" style="background-color: var(--coffee-medium);">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <div class="space-content">
+                    <h3>可持续零售区</h3>
+                    <p>销售已通过市场验证的成熟低碳品牌产品，打造循环经济。</p>
+                </div>
+            </div>
+            <div class="space-card">
+                <div class="space-img" style="background-color: var(--indiegogo-green);">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="space-content">
+                    <h3>共享绿洲</h3>
+                    <p>舒适的共享办公与社交空间，享受高品质咖啡与绿色环境。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 创新众筹 -->
+    <section id="projects">
+        <div class="section-title">
+            <h2>创新众筹</h2>
+            <p>正在进行的创新项目，支持它们成为现实</p>
+        </div>
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>智能可降解咖啡胶囊</h3>
+                    <p>完全可堆肥的单杯咖啡解决方案</p>
+                </div>
+                <div class="project-content">
+                    <div class="project-progress">
+                        <div class="progress-bar" style="width: 75%;"></div>
+                    </div>
+                    <div class="project-stats">
+                        <span>已筹: ¥152,340</span>
+                        <span>75%</span>
+                        <span>剩余: 15天</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">可持续包装</span>
+                        <span class="tag">技术创新</span>
+                        <span class="tag">咖啡体验</span>
+                    </div>
+                    <p>革命性的可堆肥咖啡胶囊，60天内完全分解，不产生微塑料。</p>
+                    <button class="cta-button" style="width: 100%;">支持项目</button>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>太阳能咖啡烘焙机</h3>
+                    <p>零碳排放的小型商用烘焙设备</p>
+                </div>
+                <div class="project-content">
+                    <div class="project-progress">
+                        <div class="progress-bar" style="width: 42%;"></div>
+                    </div>
+                    <div class="project-stats">
+                        <span>已筹: ¥89,650</span>
+                        <span>42%</span>
+                        <span>剩余: 28天</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">清洁能源</span>
+                        <span class="tag">咖啡烘焙</span>
+                        <span class="tag">小型商业</span>
+                    </div>
+                    <p>利用太阳能进行咖啡烘焙，专为小型咖啡馆和烘焙工坊设计。</p>
+                    <button class="cta-button" style="width: 100%;">支持项目</button>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>咖啡渣升级再造计划</h3>
+                    <p>将废弃咖啡渣转化为可持续产品</p>
+                </div>
+                <div class="project-content">
+                    <div class="project-progress">
+                        <div class="progress-bar" style="width: 93%;"></div>
+                    </div>
+                    <div class="project-stats">
+                        <span>已筹: ¥203,780</span>
+                        <span>93%</span>
+                        <span>剩余: 5天</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">循环经济</span>
+                        <span class="tag">升级再造</span>
+                        <span class="tag">社区参与</span>
+                    </div>
+                    <p>将咖啡渣转化为生物塑料、化妆品和燃料，实现零浪费循环。</p>
+                    <button class="cta-button" style="width: 100%;">支持项目</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 可持续数据 -->
+    <section id="sustainability">
+        <div class="section-title">
+            <h2>低碳承诺</h2>
+            <p>我们的环境影响数据，透明公开</p>
+        </div>
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">3.2T</div>
+                <p>每月碳减排量</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">78%</div>
+                <p>太阳能供电比例</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">95%</div>
+                <p>废弃物回收率</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">42</div>
+                <p>可持续品牌合作伙伴</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 社区动态 -->
+    <section id="community">
+        <div class="section-title">
+            <h2>社区动态</h2>
+            <p>最新活动与社区故事</p>
+        </div>
+        <div class="community-container">
+            <div class="community-card">
+                <div class="event-date">6月15日</div>
+                <h3>咖啡渣手工皂工作坊</h3>
+                <p>学习如何将废弃咖啡渣转化为天然手工皂，体验升级再造的乐趣。</p>
+                <button class="cta-button" style="width: 100%;">立即报名</button>
+            </div>
+            <div class="community-card">
+                <div class="event-date">6月22日</div>
+                <h3>可持续咖啡包装设计大赛</h3>
+                <p>展示你的创意，设计下一代可持续咖啡包装，赢取孵化机会。</p>
+                <button class="cta-button" style="width: 100%;">了解更多</button>
+            </div>
+            <div class="community-card">
+                <div class="event-date">每周四</div>
+                <h3>零浪费咖啡品尝会</h3>
+                <p>品尝来自世界各地的可持续种植咖啡，学习零浪费冲泡技巧。</p>
+                <button class="cta-button" style="width: 100%;">查看日程</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>JEBIstarter</h3>
+                <p>从创意到生活方式，打造咖啡主题的低碳生活新体验。</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>快速链接</h3>
+                <ul class="footer-links">
+                    <li><a href="#concept">核心理念</a></li>
+                    <li><a href="#spaces">空间体验</a></li>
+                    <li><a href="#projects">创新众筹</a></li>
+                    <li><a href="#sustainability">低碳承诺</a></li>
+                    <li><a href="#community">社区动态</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>联系我们</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> 深圳市南山区科技园</li>
+                    <li><i class="fas fa-phone"></i> +86 15800222338</li>
+                    <li><i class="fas fa-envelope"></i> info@jebicapital.com</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>订阅资讯</h3>
+                <p>获取最新活动信息与创新项目更新</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="您的电子邮箱">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 JEBIcapital 咖啡主题低碳生活购物中心. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的导航栏滚动效果
+        document.querySelectorAll('.nav-links a, .footer-links a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 简单的数据更新效果
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // 当可持续数据部分进入视口时触发动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = document.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        let targetValue;
+                        
+                        if (text.includes('T')) {
+                            targetValue = parseFloat(text) * 1000;
+                        } else if (text.includes('%')) {
+                            targetValue = parseInt(text);
+                        } else {
+                            targetValue = parseInt(text);
+                        }
+                        
+                        animateValue(stat, 0, targetValue, 2000);
+                    });
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(document.getElementById('sustainability'));
+    </script>
+</body>
+</html>
